@@ -19,6 +19,7 @@
       <img class="overflow-hidden m-2 rounded-sm border border-gray-500 shadow" src="assets/expected.jpg" alt="expected" ref="expected" />
       <img class="overflow-hidden m-2 rounded-sm border border-gray-500 shadow" src="assets/expected.jpg" alt="actual" ref="actual" />
     </div>
+    <textarea rows="8" cols="40" :value="JSON.stringfy(result)" readonly></textarea>
   </main>
   <!-- end of element -->
   <script>
@@ -26,13 +27,14 @@
       el: 'main',
       data: {
         comparing: false,
+        result: {}
       },
       methods: {
         compare() {
           console.log(6)
           this.comparing = true;
           const diff = imagediff.diff(this.$refs.expected, this.$refs.actual);
-          console.log(diff)
+          this.result = diff
         }
       },
       beforeMount() {
